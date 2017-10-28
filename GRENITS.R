@@ -3,18 +3,18 @@ source("https://bioconductor.org/biocLite.R")
 biocLite("GRENITS")
 
 library(GRENITS)
-data(Athaliana_ODE)
 
 TF <- data.matrix(Pilot_TF)[,-1]
 rownames(TF) <- Pilot_TF[,1]
 
-plot.ts( t(TF), plot.type = "single", col = 1:5,  xlim = c(0,65),
-         main = "Circadian Clock Network \n ODE simulated data",
-         xlab = "Time (h)",  ylab = "Expression")
-legend("topright", rownames(TF), lty = 1, col = 1:5)
+# plot.ts( t(TF), plot.type = "single", col = 1:5,  xlim = c(0,65),
+#          main = "Circadian Clock Network \n ODE simulated data",
+#          xlab = "Time (h)",  ylab = "Expression")
+# legend("topright", rownames(TF), lty = 1, col = 1:5)
 
 output.folder <- paste("./TF_LinearNet", sep="")
 LinearNet(output.folder, TF)
+
 analyse.output(output.folder)
 dir(output.folder)
 chain1 <- read.chain(output.folder,1)
